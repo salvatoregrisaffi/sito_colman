@@ -161,8 +161,8 @@ Il sito è **completamente funzionante** ma servono le **immagini reali**:
 
 ### 💬 CONTATTI
 - 2 contatti diretti:
-  - Sara Mandas: sara@sardasapori.it
-  - Alessandro Collu: alessandro@sardasapori.it
+   - Sara Mandas: sara@sardasapori.it
+   - Alessandro Collu: info@sardasapori.it
 
 - Form di contatto completo:
   - Nome
