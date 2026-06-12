@@ -76,6 +76,24 @@ document.addEventListener('DOMContentLoaded', () => {
 // FORM CONTATTI
 // ============================================
 const contactForm = document.getElementById('contactForm');
+const pageLang = document.body.dataset.lang || document.documentElement.lang || 'it';
+const formMessages = {
+    it: {
+        required: 'Per favore, compila tutti i campi.',
+        invalidEmail: 'Per favore, inserisci un indirizzo email valido.',
+        sending: 'Invio in corso...',
+        success: 'Grazie! Il vostro messaggio è stato inviato con successo. Vi contatteremo presto.',
+        error: 'Si è verificato un errore. Contattaci direttamente via email.'
+    },
+    en: {
+        required: 'Please fill in all fields.',
+        invalidEmail: 'Please enter a valid email address.',
+        sending: 'Sending...',
+        success: 'Thank you! Your message has been sent successfully. We will contact you soon.',
+        error: 'An error occurred. Please contact us directly by email.'
+    }
+};
+const currentMessages = formMessages[pageLang] || formMessages.it;
 
 if (contactForm) {
     contactForm.addEventListener('submit', async (e) => {
@@ -91,14 +109,14 @@ if (contactForm) {
 
         // Validazione di base
         if (!formData.name || !formData.email || !formData.subject || !formData.message) {
-            alert('Per favore, compila tutti i campi.');
+            alert(currentMessages.required);
             return;
         }
 
         // Email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(formData.email)) {
-            alert('Per favore, inserisci un indirizzo email valido.');
+            alert(currentMessages.invalidEmail);
             return;
         }
 
@@ -106,7 +124,7 @@ if (contactForm) {
             // Mostra messaggio di caricamento
             const submitBtn = contactForm.querySelector('button[type="submit"]');
             const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Invio in corso...';
+            submitBtn.textContent = currentMessages.sending;
             submitBtn.disabled = true;
 
             // Invia il form a Formspree o alternativa (configurare il vostro endpoint)
@@ -114,7 +132,7 @@ if (contactForm) {
             
             // Dopo 2 secondi mostra il messaggio
             setTimeout(() => {
-                alert('Grazie! Il vostro messaggio è stato inviato con successo. Vi contatteremo presto.');
+                alert(currentMessages.success);
                 contactForm.reset();
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
@@ -122,7 +140,7 @@ if (contactForm) {
 
         } catch (error) {
             console.error('Errore:', error);
-            alert('Si è verificato un errore. Contattaci direttamente via email.');
+            alert(currentMessages.error);
         }
     });
 }
