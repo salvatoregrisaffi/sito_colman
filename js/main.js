@@ -83,14 +83,16 @@ const formMessages = {
         invalidEmail: 'Per favore, inserisci un indirizzo email valido.',
         sending: 'Invio in corso...',
         success: 'Grazie! Il vostro messaggio è stato inviato con successo. Vi contatteremo presto.',
-        error: 'Si è verificato un errore. Contattaci direttamente via email.'
+        error: 'Si è verificato un errore. Contattaci direttamente via email.',
+        configMissing: 'Il modulo contatti non è ancora configurato. Inserisci l\'endpoint Formspree.'
     },
     en: {
         required: 'Please fill in all fields.',
         invalidEmail: 'Please enter a valid email address.',
         sending: 'Sending...',
         success: 'Thank you! Your message has been sent successfully. We will contact you soon.',
-        error: 'An error occurred. Please contact us directly by email.'
+        error: 'An error occurred. Please contact us directly by email.',
+        configMissing: 'The contact form is not configured yet. Please add the Formspree endpoint.'
     }
 };
 const currentMessages = formMessages[pageLang] || formMessages.it;
@@ -120,27 +122,44 @@ if (contactForm) {
             return;
         }
 
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+
         try {
             // Mostra messaggio di caricamento
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
+            const formEndpoint = contactForm.getAttribute('action');
+
+            if (!formEndpoint || formEndpoint.includes('REPLACE_WITH_FORM_ID')) {
+                alert(currentMessages.configMissing);
+                return;
+            }
+
             submitBtn.textContent = currentMessages.sending;
             submitBtn.disabled = true;
 
-            // Invia il form a Formspree o alternativa (configurare il vostro endpoint)
-            // Per adesso, mostra un messaggio di successo
-            
-            // Dopo 2 secondi mostra il messaggio
-            setTimeout(() => {
+            const response = await fetch(formEndpoint, {
+                method: 'POST',
+                body: new FormData(contactForm),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (response.ok) {
                 alert(currentMessages.success);
                 contactForm.reset();
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-            }, 1500);
+            } else {
+                alert(currentMessages.error);
+            }
+
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
 
         } catch (error) {
             console.error('Errore:', error);
             alert(currentMessages.error);
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
         }
     });
 }
