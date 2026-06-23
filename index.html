@@ -155,8 +155,14 @@
             <div class="products-grid">
                 <!-- Bottarga di Muggine -->
                 <div class="product-card">
-                    <div class="product-image">
-                        <img src="assets/bottarga.jpg" alt="Bottarga di Muggine">
+                    <div class="product-image product-gallery" data-gallery>
+                        <img src="assets/bottarga.jpg" alt="Bottarga di Muggine" class="gallery-slide active" data-gallery-images="assets/bottarga.jpg|assets/bottarga_fratte.jpg" data-gallery-alts="Bottarga di Muggine|Bottarga di Muggine affettata">
+                        <button class="gallery-arrow gallery-arrow-prev" type="button" aria-label="Immagine precedente">‹</button>
+                        <button class="gallery-arrow gallery-arrow-next" type="button" aria-label="Immagine successiva">›</button>
+                        <div class="gallery-dots" aria-hidden="true">
+                            <span class="gallery-dot active"></span>
+                            <span class="gallery-dot"></span>
+                        </div>
                     </div>
                     <div class="product-content">
                         <h3>Bottarga di Muggine</h3>
@@ -258,6 +264,28 @@
                         </div>
                         <p class="product-usage">
                             <strong>Utilizzo:</strong> Bastano poche gocce su tagliolini, pasta fresca, uova, risotti, pizze, focacce, carni e crudi di pesce.
+                        </p>
+                        <a href="#contatti" class="btn btn-small">Richiedi Info</a>
+                    </div>
+                </div>
+
+                <!-- Olio Extravergine di Oliva -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/olio_extravergine.jpeg" alt="Olio Extravergine di Oliva">
+                    </div>
+                    <div class="product-content">
+                        <h3>Olio Extravergine di Oliva</h3>
+                        <p class="product-description">
+                            Un olio extravergine dal carattere equilibrato e autentico, ottenuto da olive italiane selezionate e lavorate a freddo. Il suo fruttato medio, con delicate note vegetali e una piacevole armonia di sapori, lo rende ideale per ogni utilizzo in cucina, dalle preparazioni a crudo ai piatti più elaborati.
+                        </p>
+                        <div class="product-features">
+                            <span class="feature">Olive italiane</span>
+                            <span class="feature">Lavorazione a freddo</span>
+                            <span class="feature">Fruttato medio</span>
+                        </div>
+                        <p class="product-usage">
+                            <strong>Utilizzo:</strong> Ideale a crudo, in cottura e per accompagnare piatti semplici o preparazioni più elaborate.
                         </p>
                         <a href="#contatti" class="btn btn-small">Richiedi Info</a>
                     </div>
@@ -503,6 +531,6 @@
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
+    <script src="js/main.js?v=20260623-gallery"></script>
 </body>
 </html>

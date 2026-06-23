@@ -45,6 +45,35 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // ============================================
+// GALLERIE PRODOTTO
+// ============================================
+document.querySelectorAll('[data-gallery]').forEach(gallery => {
+    const mainImage = gallery.querySelector('[data-gallery-images]');
+    const images = mainImage ? mainImage.dataset.galleryImages.split('|') : [];
+    const alts = mainImage ? mainImage.dataset.galleryAlts.split('|') : [];
+    const dots = gallery.querySelectorAll('.gallery-dot');
+    const prevButton = gallery.querySelector('.gallery-arrow-prev');
+    const nextButton = gallery.querySelector('.gallery-arrow-next');
+    let currentIndex = 0;
+
+    const showSlide = index => {
+        currentIndex = (index + images.length) % images.length;
+
+        mainImage.src = images[currentIndex];
+        mainImage.alt = alts[currentIndex] || mainImage.alt;
+
+        dots.forEach((dot, dotIndex) => {
+            dot.classList.toggle('active', dotIndex === currentIndex);
+        });
+    };
+
+    if (mainImage && images.length > 1 && prevButton && nextButton) {
+        prevButton.addEventListener('click', () => showSlide(currentIndex - 1));
+        nextButton.addEventListener('click', () => showSlide(currentIndex + 1));
+    }
+});
+
+// ============================================
 // SCROLL REVEAL ANIMATIONS
 // ============================================
 const observerOptions = {

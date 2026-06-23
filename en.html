@@ -154,8 +154,14 @@
             <div class="products-grid">
                 <!-- Bottarga di Muggine -->
                 <div class="product-card">
-                    <div class="product-image">
-                        <img src="assets/bottarga.jpg" alt="Mullet Bottarga">
+                    <div class="product-image product-gallery" data-gallery>
+                        <img src="assets/bottarga.jpg" alt="Mullet Bottarga" class="gallery-slide active" data-gallery-images="assets/bottarga.jpg|assets/bottarga_fratte.jpg" data-gallery-alts="Mullet Bottarga|Sliced Mullet Bottarga">
+                        <button class="gallery-arrow gallery-arrow-prev" type="button" aria-label="Previous image">‹</button>
+                        <button class="gallery-arrow gallery-arrow-next" type="button" aria-label="Next image">›</button>
+                        <div class="gallery-dots" aria-hidden="true">
+                            <span class="gallery-dot active"></span>
+                            <span class="gallery-dot"></span>
+                        </div>
                     </div>
                     <div class="product-content">
                         <h3>Mullet Bottarga</h3>
@@ -257,6 +263,28 @@
                         </div>
                         <p class="product-usage">
                             <strong>Use:</strong> Just a few drops season tagliolini, fresh pasta, eggs, risotto, pizza, focaccia, meat and raw fish.
+                        </p>
+                        <a href="#contatti" class="btn btn-small">Request Info</a>
+                    </div>
+                </div>
+
+                <!-- Extra Virgin Olive Oil -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/olio_extravergine.jpeg" alt="Extra Virgin Olive Oil">
+                    </div>
+                    <div class="product-content">
+                        <h3>Extra Virgin Olive Oil</h3>
+                        <p class="product-description">
+                            An extra virgin olive oil with a balanced and authentic character, obtained from selected Italian olives and cold-processed. Its medium fruitiness, with delicate vegetal notes and a pleasant harmony of flavors, makes it ideal for every use in the kitchen, from raw preparations to more elaborate dishes.
+                        </p>
+                        <div class="product-features">
+                            <span class="feature">Italian olives</span>
+                            <span class="feature">Cold-processed</span>
+                            <span class="feature">Medium fruitiness</span>
+                        </div>
+                        <p class="product-usage">
+                            <strong>Use:</strong> Ideal raw, in cooking and to accompany simple dishes or more elaborate preparations.
                         </p>
                         <a href="#contatti" class="btn btn-small">Request Info</a>
                     </div>
@@ -502,6 +530,6 @@
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
+    <script src="js/main.js?v=20260623-gallery"></script>
 </body>
 </html>
